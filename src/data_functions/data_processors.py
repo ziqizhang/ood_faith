@@ -494,7 +494,7 @@ if __name__ == "__main__":
 
         download_raw_data()
 
-    for task_name in {"SST","IMDB", "Yelp", "AmazDigiMu", "AmazPantry", "AmazInstr"}:
+    for task_name in {"SST","IMDB", "AmazPantry"}:
 
         print(f"** processing -> {task_name}")
 
