@@ -1,2 +1,8 @@
 datasets/*
 models/*
+config/model_config.json
+config/*
+experiment_*/*
+extracted_rationales/*
+posthoc_results/*
+*.pyc

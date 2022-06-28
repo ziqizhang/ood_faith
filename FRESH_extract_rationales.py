@@ -128,6 +128,8 @@ del data
 del evaluator
 gc.collect()
 
+#todo: comment out the following to ignore ood
+
 ## ood evaluation DATASET 1
 data = dataholder(
     path = args["data_dir"], 

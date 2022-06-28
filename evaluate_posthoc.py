@@ -146,7 +146,7 @@ del data
 del evaluator
 gc.collect()
 
-
+#todo: comment out the following block to ignore OOD
 ## ood evaluation DATASET 1
 data = BERT_HOLDER(
     path = args["data_dir"], 

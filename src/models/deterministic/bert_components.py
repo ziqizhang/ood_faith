@@ -74,19 +74,19 @@ class BertModelWrapper(nn.Module):
         )
 
         ## if its for evaluation we need it to be a fraction
-        if type(ig) == int:
-
-            assert ig >= 0. and ig <= int(1), "IG ratio cannot be out of the range 0-1"
-
-        else:
-            
-            ## else we need it to match the embeddings size for the KUMA mask
-            ## therefore in this case ig is actually z from the KUMA model
-            assert ig.size(0) == embeddings.size(0), "Mis-match in dimensions of mask and embeddings"
-            assert ig.size(1) == embeddings.size(1), "Mis-match in dimensions of mask and embeddings"
-            assert ig.size(2) == 1, "Rationale mask should be of size 1 in final dimension"
-
-            ig = ig.float()
+        # if type(ig) == int:
+        #
+        #     assert ig >= 0. and ig <= int(1), "IG ratio cannot be out of the range 0-1"
+        #
+        # else:
+        #
+        #     ## else we need it to match the embeddings size for the KUMA mask
+        #     ## therefore in this case ig is actually z from the KUMA model
+        #     assert ig.size(0) == embeddings.size(0), "Mis-match in dimensions of mask and embeddings"
+        #     assert ig.size(1) == embeddings.size(1), "Mis-match in dimensions of mask and embeddings"
+        #     assert ig.size(2) == 1, "Rationale mask should be of size 1 in final dimension"
+        #
+        #     ig = ig.float()
   
         extended_attention_mask = attention_mask.unsqueeze(1).unsqueeze(2)
 

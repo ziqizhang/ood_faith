@@ -14,7 +14,7 @@
         "docs in label-2": 15504
     },
     "test": {
-        "avg. sequence length": 24,
+        "avg. sequence length": 23,
         "no. of documents": 20642,
         "docs in label-0": 1037,
         "docs in label-1": 1366,

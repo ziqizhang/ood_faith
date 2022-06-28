@@ -140,6 +140,7 @@ if args["evaluate_models"]:
     del data
     gc.collect()
 
+    #todo: comment out the following block to remove ood evaluation
     ## ood evaluation ON OOD-DATASET 1
     data = dataholder(
         path = args["data_dir"], 

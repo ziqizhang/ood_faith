@@ -1,0 +1,30 @@
+1. update config/model_config.json
+- each 'dataset' block defines rationale length (dependent on the input text, as % of content to extract as
+rationale. SoTA often 10~20%); ood_dataset (set to itself if no need to evaluate on ood datasets)
+
+2. train the model (see github page, train)
+- by default, 5 seeds will be tested. This did lead to different performance in F1
+- OUTPUT: a folder 'models' containing models, e.g., bert5.pt, bert10.pt.... where 5/10 is the seed
+
+3. evaluate (see github page, evaluate)
+- evaluation on the test set; saved in models/DATASET/***_predictive_performances...
+- OUTPUT: under 'models', files named bert_predictive_performances-XXX.json created, they contain evaluation scores
+
+4. run posthoc eval. different metrics will be used, evaluated against different standards
+- only the 'best performing' model will be used (see output from step 3)
+- each target dataset will have an output file .json
+- OUTPUT: posthoc_results folder containing post hoc eval results; extracted_rationales/important scores (these are like feature weights at word level)
+- todo: find out how the model was selected
+
+5. run extraction
+- extracted_rationales/data: these are the actual extracted rationale phrases based on the defined % of rationale
+- which one to use? decided based on output from step 4. often SoTA uses attention
+
+extraction
+- where are they extracted from, train, dev or test
+- what really happens when extracting rationales? see log
+
+customisation
+- to add new dataset, what needs to be changed
+(/datasets, train_fulltext_and_kuma
+

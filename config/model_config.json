@@ -1,5 +1,5 @@
 {   "epochs" : 3,
-    "model_abbreviation" :      {"bert-base-uncased": "bert", 
+    "model_abbreviation" :      {"/home/zz/Work/bert-base-uncased": "bert", 
                                  "allenai/scibert_scivocab_uncased": "scibert",
                                  "roberta-base": "roberta"},
     "embed_model" : "glove.840B.300d",
@@ -8,7 +8,7 @@
         "batch_size" : 8,
         "lr_bert" : 1e-5,
         "lr_classifier" : 1e-4,
-        "model" : "bert-base-uncased",
+        "model" : "/home/zz/Work/bert-base-uncased",
         "ood_dataset_1": "SST",
         "ood_dataset_2": "Yelp"
     },
@@ -17,7 +17,7 @@
         "batch_size": 8,
         "lr_bert" : 1e-5,
         "lr_classifier" : 1e-4, 
-        "model" : "bert-base-uncased",
+        "model" : "/home/zz/Work/bert-base-uncased",
         "ood_dataset_1": "IMDB",
         "ood_dataset_2": "Yelp"
     },
@@ -26,7 +26,7 @@
         "batch_size": 8,
         "lr_bert" : 1e-5,
         "lr_classifier" : 1e-4, 
-        "model" : "bert-base-uncased",
+        "model" : "/home/zz/Work/bert-base-uncased",
         "ood_dataset_1": "SST",
         "ood_dataset_2": "IMDB"
     },
@@ -35,7 +35,7 @@
         "batch_size": 8,
         "lr_bert" : 1e-5,
         "lr_classifier" : 1e-4, 
-        "model" : "bert-base-uncased",
+        "model" : "/home/zz/Work/bert-base-uncased",
         "ood_dataset_1": "AmazInstr",
         "ood_dataset_2": "AmazPantry"
     },
@@ -44,7 +44,7 @@
         "batch_size": 8,
         "lr_bert" : 1e-5,
         "lr_classifier" : 1e-4, 
-        "model" : "bert-base-uncased",
+        "model" : "/home/zz/Work/bert-base-uncased",
         "ood_dataset_1": "AmazDigiMu",
         "ood_dataset_2": "AmazPantry"
     },
@@ -53,7 +53,7 @@
         "batch_size": 8,
         "lr_bert" : 1e-5,
         "lr_classifier" : 1e-4, 
-        "model" : "bert-base-uncased",
+        "model" : "/home/zz/Work/bert-base-uncased",
         "ood_dataset_1": "AmazDigiMu",
         "ood_dataset_2": "AmazInstr"
     }
