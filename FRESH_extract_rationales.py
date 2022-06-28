@@ -128,60 +128,6 @@ del data
 del evaluator
 gc.collect()
 
-#todo: comment out the following to ignore ood
 
-## ood evaluation DATASET 1
-data = dataholder(
-    path = args["data_dir"], 
-    b_size = args["batch_size"],
-    ood = True,
-    ood_dataset_ = 1,
-    stage = "eval",
-    return_as_frames = True
-)
-
-evaluator = evaluation_pipeline.evaluate(
-    model_path = args["model_dir"], 
-    output_dims = data.nu_of_labels,
-    ood = True,
-    ood_dataset_ = 1
-)
-
-logging.info("*********extracting oo-domain rationales")
-
-evaluator.register_importance_(data)
-evaluator.create_rationales_(data)
-
-# delete full data not needed anymore
-del data
-del evaluator
-gc.collect()
-
-## ood evaluation DATASET 2
-data = dataholder(
-    path = args["data_dir"], 
-    b_size = args["batch_size"],
-    ood = True,
-    ood_dataset_ = 2,
-    stage = "eval",
-    return_as_frames = True
-)
-
-evaluator = evaluation_pipeline.evaluate(
-    model_path = args["model_dir"], 
-    output_dims = data.nu_of_labels,
-    ood = True,
-    ood_dataset_ = 2
-)
-
-logging.info("*********extracting oo-domain rationales")
-
-evaluator.register_importance_(data)
-evaluator.create_rationales_(data)
-
-# delete full data not needed anymore
-del data
-del evaluator
-gc.collect()
 torch.cuda.empty_cache()
 

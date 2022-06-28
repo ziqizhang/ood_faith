@@ -146,57 +146,6 @@ del data
 del evaluator
 gc.collect()
 
-#todo: comment out the following block to ignore OOD
-## ood evaluation DATASET 1
-data = BERT_HOLDER(
-    path = args["data_dir"], 
-    b_size = args["batch_size"],
-    stage = "eval", #args["batch_size"],
-    ood = True,
-    ood_dataset_ = 1
-)
-
-evaluator = evaluation_pipeline.evaluate(
-    model_path = args["model_dir"], 
-    output_dims = data.nu_of_labels,
-    ood = True,
-    ood_dataset_ = 1
-)
-
-logging.info("*********conducting oo-domain flip experiments DATASET 1")
-
-evaluator.faithfulness_experiments_(data)
-
-# delete full data not needed anymore
-del data
-del evaluator
-gc.collect()
-
-
-## ood evaluation DATASET 2
-data = BERT_HOLDER(
-    path = args["data_dir"], 
-    b_size = args["batch_size"],
-    stage = "eval", #args["batch_size"],
-    ood = True,
-    ood_dataset_ = 2
-)
-
-evaluator = evaluation_pipeline.evaluate(
-    model_path = args["model_dir"], 
-    output_dims = data.nu_of_labels,
-    ood = True,
-    ood_dataset_ = 2
-)
-
-logging.info("*********conducting oo-domain flip experiments DATASET 2")
-
-evaluator.faithfulness_experiments_(data)
-
-# delete full data not needed anymore
-del data
-del evaluator
-gc.collect()
 torch.cuda.empty_cache()
 
   
