@@ -6,3 +6,4 @@ experiment_*/*
 extracted_rationales/*
 posthoc_results/*
 *.pyc
+output/*
