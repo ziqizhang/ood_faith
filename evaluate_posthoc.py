@@ -103,7 +103,8 @@ logging.basicConfig(
                     datefmt='%Y-%m-%d %H:%M:%S'
                   )
 
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+#device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 logging.info("Running on cuda ? {}".format(torch.cuda.is_available()))
 

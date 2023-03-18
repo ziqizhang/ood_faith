@@ -14,7 +14,8 @@ from bs4 import BeautifulSoup
 
 REPLACE_BY_SPACE_RE = re.compile('[/(){}\[\]\|@,;]')
 BAD_SYMBOLS_RE = re.compile('[^0-9a-z.]')
-STOPWORDS = set(nltk.stopwords.words('english'))
+STOPWORDS = set()
+#set(nltk.stopwords.words('english'))
 def clean_text(text):
     """
         text: a string
@@ -99,25 +100,25 @@ def make_train_or_test(dataset, train_or_test, label_list, label_col_index, text
 '''
 /home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/Place.csv
 5
-5
+4
+1
 2
-3
 /home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_folds
 
 
 /home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/LocalBusiness.csv
 5
-5
+4
+1
 2
-3
 /home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_folds
 
 
 /home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/CreativeWork.csv
 5
-5
+4
+1
 2
-3
 /home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_folds
 
 '''

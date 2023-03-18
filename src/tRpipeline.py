@@ -31,7 +31,13 @@ with open(config.cfg.config_directory + 'instance_config.json', 'r') as f:
 torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+# device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#
+# model = CreateModel()
+#
+# model= torch.nn.DataParallel(model)
+# model.to(device)
 
 
 from src.models.deterministic.bert import BertClassifier
@@ -107,6 +113,7 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
             **faith_args.get_[args.dataset]["MODEL_ARGS_"]
         )
 
+    classifier= torch.nn.DataParallel(classifier)
     classifier.to(device)
 
     loss_function = nn.CrossEntropyLoss() 
