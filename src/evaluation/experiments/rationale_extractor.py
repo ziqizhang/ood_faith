@@ -89,7 +89,7 @@ def extract_importance_(model, data, data_split_name, model_random_seed, ood, oo
 
         gradients = torch.norm(g* em, dim = -1)
 
-        integrated_grads = model.integrated_grads(
+        integrated_grads = model.module.integrated_grads(
                 original_grad = g, 
                 original_pred = yhat.max(-1),
                 **batch    
