@@ -267,7 +267,7 @@ def test_predictive_performance(
 
         classifier.to(device)
     
-        classifier.load_state_dict(torch.load(model, map_location=device))
+        classifier.load_state_dict(torch.load(model, map_location=device), strict=False)
         
         logging.info(
             "Loading model: {}".format(
