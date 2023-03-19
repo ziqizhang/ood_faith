@@ -112,7 +112,7 @@ def extract_importance_(model, data, data_split_name, model_random_seed, ood, oo
         # if args.use_tasc:
         #     attention_gradients = model.weights_or.grad
         # else:
-        attention_gradients = model.weights_or.grad[:,:,0,:].mean(1)
+        attention_gradients = model.module.weights_or.grad[:,:,0,:].mean(1)
         
         attention_gradients =  (attentions * attention_gradients)
 
