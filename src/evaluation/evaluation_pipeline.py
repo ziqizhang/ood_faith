@@ -81,7 +81,7 @@ class evaluate():
 
             logging.info(f" *** loading model -> {model_name}")
 
-            model.load_state_dict(torch.load(model_name, map_location=device), strict=False)
+            model.load_state_dict(torch.load(model_name, map_location=device))
 
             model = torch.nn.DataParallel(model)
 
@@ -232,7 +232,7 @@ class evaluate():
 
             logging.info(f" *** loading model - {model_name}")
 
-            model.load_state_dict(torch.load(model_name, map_location=device), strict=False)
+            model.load_state_dict(torch.load(model_name, map_location=device))
             model = torch.nn.DataParallel(model)
 
             model.to(device)

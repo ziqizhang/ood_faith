@@ -265,9 +265,10 @@ def test_predictive_performance(
                 **faith_args.get_[args.dataset]["MODEL_ARGS_"]
             )
 
-        classifier.to(device)
+        #classifier.to(device)
     
-        classifier.load_state_dict(torch.load(model, map_location=device), strict=False)
+        classifier.load_state_dict(torch.load(model, map_location=device))
+        classifier = torch.nn.DataParallel(classifier)
         
         logging.info(
             "Loading model: {}".format(

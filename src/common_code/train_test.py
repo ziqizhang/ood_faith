@@ -66,7 +66,7 @@ class checkpoint_holder(object):
                         indent = 4
                     )
 
-                torch.save(model.state_dict(), self.save_model_location)
+                torch.save(model.module.state_dict(), self.save_model_location)
 
             return self.storer
 
@@ -87,7 +87,7 @@ class checkpoint_holder(object):
                     indent = 4
                 )
 
-            torch.save(model.state_dict(), self.save_model_location)
+            torch.save(model.module.state_dict(), self.save_model_location)
 
         return self.storer
         
