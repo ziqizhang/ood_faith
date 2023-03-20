@@ -141,7 +141,7 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
             optimiser = AdamW([
                 {'params': [p for n,p in classifier.module.wrapper.named_parameters() if p.requires_grad], 'lr': args.lr_bert},
                 {'params': classifier.module.output_layer.parameters(), 'lr': args.lr_classifier},
-                {'params': [p for n,p in classifier.module.named_parameters() if "u_param" in n], 'lr': args.lr_classifier}],
+                {'params': [p for n,p in classifier.named_parameters() if "u_param" in n], 'lr': args.lr_classifier}],
                 correct_bias = False
             )
 

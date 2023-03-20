@@ -4,7 +4,8 @@ from transformers.optimization import get_linear_schedule_with_warmup
 import numpy as np
 import os
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+#device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 import json 
 import logging
