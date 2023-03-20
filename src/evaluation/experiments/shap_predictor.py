@@ -32,6 +32,6 @@ class ShapleyModelWrapper(nn.Module):
         sequence_output = encoder_outputs[0]
         pooled_output = self.model.module.wrapper.model.pooler(sequence_output) if self.model.module.wrapper.model.pooler is not None else None
 
-        logits = self.model.output_layer(pooled_output)
+        logits = self.model.module.output_layer(pooled_output)
 
         return logits
