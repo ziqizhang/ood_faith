@@ -32,12 +32,12 @@ torch.backends.cudnn.deterministic = True
 torch.backends.cudnn.benchmark = False
 
 # device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-device_ids = [i for i in range(torch.cuda.device_count())]
-print(device_ids)
+# device_ids = [i for i in range(torch.cuda.device_count())]
+# print(device_ids)
 
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(len(device))
+device = torch.device("cuda:0,1,2,3" if torch.cuda.is_available() else "cpu")
+print(device)
 #
 # model = CreateModel()
 #
