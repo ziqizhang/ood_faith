@@ -117,7 +117,7 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
             **faith_args.get_[args.dataset]["MODEL_ARGS_"]
         )
 
-    classifier= torch.nn.DataParallel(classifier, device_ids=[0,1,2,3])
+    classifier= torch.nn.DataParallel(classifier)
     classifier.to(device)
 
     loss_function = nn.CrossEntropyLoss() 
