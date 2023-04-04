@@ -125,7 +125,7 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
     if args.inherently_faithful: 
 
         optimiser = Adam(
-            params = classifier.parameters(),
+            params = classifier.module.parameters(),
             **faith_args.get_[args.dataset]["OPTIM_ARGS_"]
         )
 
@@ -134,7 +134,7 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
 
         if args.use_tasc:
             
-            classifier.wrapper.model.embeddings.word_embeddings.weight.requires_grad_(False)
+            classifier.module.wrapper.model.embeddings.word_embeddings.weight.requires_grad_(False)
 
             difference = sum(p.numel() for p in classifier.parameters() if p.requires_grad) + classifier.wrapper.model.embeddings.word_embeddings.weight.numel()
 
@@ -145,13 +145,13 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
             optimiser = AdamW([
                 {'params': [p for n,p in classifier.module.wrapper.named_parameters() if p.requires_grad], 'lr': args.lr_bert},
                 {'params': classifier.module.output_layer.parameters(), 'lr': args.lr_classifier},
-                {'params': [p for n,p in classifier.named_parameters() if "u_param" in n], 'lr': args.lr_classifier}],
+                {'params': [p for n,p in classifier.module.named_parameters() if "u_param" in n], 'lr': args.lr_classifier}],
                 correct_bias = False
             )
 
         else:
 
-            assert sum(p.numel() for p in classifier.parameters() if p.requires_grad) == sum(p.numel() for p in classifier.parameters()), ("""
+            assert sum(p.numel() for p in classifier.module.parameters() if p.requires_grad) == sum(p.numel() for p in classifier.parameters()), ("""
             some of the parameters in this model are not trainable (Note: They should all be trainable)
             """)
 
