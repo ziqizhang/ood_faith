@@ -81,15 +81,15 @@ def extract_importance_(model, data, data_split_name, model_random_seed, ood, oo
         yhat.max(-1)[0].sum().backward(retain_graph = True)
 
         #embedding gradients
-        embed_grad = model.module.wrapper.model.embeddings.word_embeddings.weight.grad
+        embed_grad = model.wrapper.model.embeddings.word_embeddings.weight.grad
         g = embed_grad[batch["input_ids"].long()]
 
 
-        em = model.module.wrapper.model.embeddings.word_embeddings.weight[batch["input_ids"].long()]
+        em = model.wrapper.model.embeddings.word_embeddings.weight[batch["input_ids"].long()]
 
         gradients = torch.norm(g* em, dim = -1)
 
-        integrated_grads = model.module.integrated_grads(
+        integrated_grads = model.integrated_grads(
                 original_grad = g, 
                 original_pred = yhat.max(-1),
                 **batch    
@@ -112,7 +112,7 @@ def extract_importance_(model, data, data_split_name, model_random_seed, ood, oo
         # if args.use_tasc:
         #     attention_gradients = model.weights_or.grad
         # else:
-        attention_gradients = model.module.weights_or.grad[:,:,0,:].mean(1)
+        attention_gradients = model.weights_or.grad[:,:,0,:].mean(1)
         
         attention_gradients =  (attentions * attention_gradients)
 
@@ -297,7 +297,7 @@ def extract_shap_values_(model, data, data_split_name,
         
         original_prediction, _ =  model(**batch)
 
-        embeddings = model.module.wrapper.model.embeddings.word_embeddings.weight[batch["input_ids"].long()]
+        embeddings = model.wrapper.model.embeddings.word_embeddings.weight[batch["input_ids"].long()]
 
         attribution = explainer.attribute(
             embeddings.requires_grad_(True), 
