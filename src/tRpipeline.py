@@ -173,7 +173,7 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
         )
 
     _, results_to_save = train_model(
-        classifier,  
+        classifier.module,
         train_data_loader, 
         dev_data_loader, 
         loss_function,
@@ -285,7 +285,7 @@ def test_predictive_performance(
         loss_function = nn.CrossEntropyLoss()
 
         test_results,test_loss, test_predictions = test_model(
-                model =classifier, 
+                model =classifier.module,
                 loss_function = loss_function, 
                 data= test_data_loader,
                 save_output_probs = save_output_probs,
