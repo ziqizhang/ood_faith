@@ -273,7 +273,7 @@ def test_predictive_performance(
         #classifier.to(device)
     
         classifier.load_state_dict(torch.load(model, map_location=device))
-        classifier = torch.nn.DataParallel(classifier, device_ids=[0,1,2,3])
+        classifier = torch.nn.DataParallel(classifier)
         
         logging.info(
             "Loading model: {}".format(
