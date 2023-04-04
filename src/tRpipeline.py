@@ -118,7 +118,7 @@ def train_and_save(train_data_loader, dev_data_loader, for_rationale = False, ou
             **faith_args.get_[args.dataset]["MODEL_ARGS_"]
         )
 
-    classifier= torch.nn.DataParallel(classifier)
+    classifier= torch.nn.DataParallel(classifier, device_ids=[0,1,2,3])
     classifier.to(device)
 
     loss_function = nn.CrossEntropyLoss() 
@@ -273,7 +273,7 @@ def test_predictive_performance(
         #classifier.to(device)
     
         classifier.load_state_dict(torch.load(model, map_location=device))
-        classifier = torch.nn.DataParallel(classifier)
+        classifier = torch.nn.DataParallel(classifier, device_ids=[0,1,2,3])
         
         logging.info(
             "Loading model: {}".format(
