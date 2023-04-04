@@ -35,7 +35,7 @@ torch.backends.cudnn.benchmark = False
 
 device_ids = [i for i in range(torch.cuda.device_count())]
 print(device_ids)
-device = torch.device("cuda:0,1,2,3" if torch.cuda.is_available() else "cpu")
+device = torch.device('cuda:2,3' if torch.cuda.is_available() else "cpu")
 print(device)
 #
 # model = CreateModel()
