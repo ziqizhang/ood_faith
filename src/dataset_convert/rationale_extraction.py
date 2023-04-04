@@ -17,7 +17,7 @@ STOPWORDS = set(stopwords.words('english'))
 
 def load_into_df(*rationale_files):
     unique_labels=set()
-    df = pandas.DataFrame(columns=['exp_split', 'label_id', 'text', 'full text doc'])
+    df = pandas.DataFrame(columns=['exp_split', 'label_id', 'text'])
     for f in rationale_files:
         with open(f) as input_file:
             file_contents = input_file.read()
@@ -26,11 +26,13 @@ def load_into_df(*rationale_files):
 
             i=0
             for entry in parsed_json:
-                df.loc[i]=[entry['exp_split'],entry['label_id'],entry['text'],entry['full text doc']]
+                if len(entry['full text doc'].strip())==0:
+                    continue
+                df.loc[i]=[entry['exp_split'],entry['label_id'],entry['text']]
                 unique_labels.add(entry['label_id'])
                 i+=1
                 if i%5000==0:
-                    print(str(datetime.datetime.now())+", "+str(i))
+                    print(str(datetime.datetime.now())+", "+str(i)+"/"+str(len(parsed_json)))
 
                 # if i>10000:
                 #     break
@@ -66,5 +68,18 @@ def analyse_word_freq(dataframe, col_name):
     return freq
 
 if __name__ == "__main__":
+    '''
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/place/extracted_rationales/AmazDigiMu/data/topk/scaled attention-train.json"
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/place/extracted_rationales/AmazDigiMu/data/topk/scaled attention-test.json"
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/place"
+
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/localbusiness/extracted_rationales/AmazDigiMu/data/topk/scaled attention-train.json"
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/localbusiness/extracted_rationales/AmazDigiMu/data/topk/scaled attention-test.json"
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/localbusiness"
+
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/creativework/extracted_rationales/AmazDigiMu/data/topk/scaled attention-train.json"
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/creativework/extracted_rationales/AmazDigiMu/data/topk/scaled attention-test.json"
+"/home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_outputs/output_name/creativework"
+'''
     labels, df=load_into_df(sys.argv[1], sys.argv[2])
     quant_analyse(df, labels, sys.argv[3])

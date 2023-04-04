@@ -118,11 +118,8 @@ logging.info("\n ----------------------")
 
 
 if args["inherently_faithful"] is not None:
-    
     from src.data_functions.dataholders import KUMA_RL_HOLDER as dataholder
-    
 else:
-    
     from src.data_functions.dataholders import BERT_HOLDER as dataholder
     
 from src.tRpipeline import train_and_save, test_predictive_performance, keep_best_model_

@@ -193,7 +193,7 @@ def train_model(model, training, development, loss_function, optimiser, seed,
 
                 assert batch["input_ids"].size(0) == len(batch["labels"]), "Error: batch size for item 1 not in correct position"
 
-            yhat, _ =  model(**batch)
+            yhat, _ =  model.module(**batch)
 
             if len(yhat.shape) == 1:
                 

@@ -121,8 +121,11 @@ def make_train_or_test(dataset, train_or_test, label_list, label_col_index, text
 2
 /home/zz/Data/wdc_data_index/wdctable_202012_index_top100_export_forML/ood_faith_folds
 
+
+name+desc 1st sent = 8
 '''
 if __name__ == "__main__":
+    #fold, col name, col_desc (not used), col label, outfolder
     convert_wdctable_corpus(sys.argv[1],int(sys.argv[2]),
                             int(sys.argv[3]),int(sys.argv[4]),
                             int(sys.argv[5]),
