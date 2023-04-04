@@ -81,7 +81,7 @@ class constrastivator():
             if self.ood:
 
                 extract_importance_(
-                    model = model, 
+                    model = model.module,
                     data_split_name = "test",
                     data = data.test_loader,
                     model_random_seed = self.model_random_seed,
@@ -91,7 +91,7 @@ class constrastivator():
             else:
 
                 extract_importance_(
-                    model = model, 
+                    model = model.module,
                     data_split_name = "train",
                     data = data.train_loader,
                     model_random_seed = self.model_random_seed,

@@ -97,7 +97,7 @@ class evaluate():
                 assert data_split == "test"
 
                 extract_importance_(
-                    model = model, 
+                    model = model.module,
                     data_split_name = "test",
                     data = data.test_loader,
                     model_random_seed = self.model_random_seed,
@@ -106,7 +106,7 @@ class evaluate():
                 )
 
                 extract_lime_scores_(
-                    model = model, 
+                    model = model.module,
                     data = data.test_loader,
                     data_split_name = "test",
                     model_random_seed = self.model_random_seed,
@@ -118,7 +118,7 @@ class evaluate():
                 )
 
                 extract_shap_values_(
-                    model = model, 
+                    model = model.module,
                     data = data.test_loader,
                     data_split_name = "test",
                     model_random_seed = self.model_random_seed,
@@ -133,7 +133,7 @@ class evaluate():
                                                     "test":  data.test_loader}.items():
 
                     extract_importance_(
-                        model = model, 
+                        model = model.module,
                         data_split_name = data_split_name,
                         data = data_split,
                         model_random_seed = self.model_random_seed,
@@ -142,7 +142,7 @@ class evaluate():
                     )
 
                     extract_lime_scores_(
-                        model = model, 
+                        model = model.module,
                         data = data_split,
                         data_split_name = data_split_name,
                         model_random_seed = self.model_random_seed,
@@ -154,7 +154,7 @@ class evaluate():
                     )
 
                     extract_shap_values_(
-                        model = model, 
+                        model = model.module,
                         data = data_split,
                         data_split_name = data_split_name,
                         model_random_seed = self.model_random_seed,
